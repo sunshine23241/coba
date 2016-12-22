@@ -1,0 +1,24 @@
+<?php include config.php ?>
+<!DOCTYPE html>
+<html lang="en">
+<?php include header.php ?>
+$update = UPDATE control SET switch_status='OFF' WHERE control_id='$control_id';
+$queryupdate = mysql_query($update, $conn) or die ("Failed to insert data!");
+if(empty($room_id)||empty($switch)||empty($mac_address)||empty($mode)||empty($schedule_on)||empty($schedule_off)){
+		?>
+		<script type="text/javascript">
+		window.alert("The information of device haven't been completed yet. Please fill in all of the required fields!");
+		</script>
+		<meta http-equiv="refresh" content="0; url=coba_controladd.php">
+		<?php
+	} else {
+	    if($queryupdate) {
+			?>
+			<script type="text/javascript">
+			window.alert("Device has successfully turned off manually!");
+			</script>
+			<meta http-equiv="refresh" content="0; url=manual.php">
+			<?php
+		}
+	}
+ 
